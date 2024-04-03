@@ -1,56 +1,48 @@
-// imported scanner to get user input
 import java.util.Scanner;
-
-
-// declared main class
 
 class JavaMathApp {
 
+    public static void main(String[] args) {
+        Scanner scn = new Scanner(System.in);
 
-//declared  main method to get user input and print to console
-  public static void main(String[] args) {
+        while (true) {
+            System.out.println("Please enter the first number:");
+            int first = 0;
+            int second = 0;
+            String third = "";
+            try {
+                first = scn.nextInt();
+                System.out.println("Please enter the second number:");
+                second = scn.nextInt();
+                System.out.println("Please enter the type of operation (Addition (+), Multiplication (*), Division(/), Subtraction(-)):");
+                third = scn.next();
 
-  
-
-
-    Scanner scn = new Scanner(System.in);
-    System.out.println("Please enter the first number:");
-    int first = scn.nextInt();
-    System.out.println("Please enter the second number");
-    int second = scn.nextInt();
-    System.out.println("Please enter the type of operation (Addition (+), Multiplication (*), Division(/), Subtraction(-)):");
-    String third = scn.next();
-
-    // conditional to check value of input, execute mathematical operations and print to console
-
-    if (third.equals("+")){
-        // add the two inputs
-    int sum = first + second;
-    System.out.println(first + " + " + second + " = "  + sum);
-    
-    } else if (third.equals("-")){
-        //subtract the two inputs
-        int subtraction = first - second;
-        System.out.println(first + " - " + second + " = "  + subtraction);
-        } else if (third.equals("/")) {
-            // divide the two inputs
-    int division = first / second;
-    System.out.println(first + " / " + second + " = "  + division);
-        } else if (third.equals("*")){
-            // multiply the two inputs
-    int multiplication = first * second;
-    System.out.println(first + " * " + second + " = "  + multiplication);
-        }
-    
-        try {
-            if ( != int) {
-                throw new IllegalArgumentException("Please enter appropriate type");
+                if (third.equals("+")) {
+                    int sum = first + second;
+                    System.out.println("The result is " + first + " + " + second + " = " + sum);
+                } else if (third.equals("-")) {
+                    int subtraction = first - second;
+                    System.out.println("The result is " + first + " - " + second + " = " + subtraction);
+                } else if (third.equals("/")) {
+                    int division = first / second;
+                    System.out.println("The result is " + first + " / " + second + " = " + division);
+                } else if (third.equals("*")) {
+                    int multiplication = first * second;
+                    System.out.println("The result is " + first + " * " + second + " = " + multiplication);
+                } else {
+                    System.out.println("Invalid operation.");
                 }
-          } catch (Exception e) {
-            System.out.println("Only numbers please!");
-          }
+            } catch (Exception e) {
+                System.out.println("Invalid input. Please enter only numbers.");
+                scn.next(); // Clears the invalid input
+            }
+
+            System.out.println("Do you want to perform another operation? (yes/no)");
+            String choice = scn.next();
+            if (!choice.equalsIgnoreCase("yes")) {
+                break;
+            }
         }
-      }
-    
-  }
+        scn.close();
+    }
 }
